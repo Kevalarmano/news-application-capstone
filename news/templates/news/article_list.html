@@ -1,0 +1,15 @@
+{% extends "news/base.html" %}
+{% block content %}
+  <h1>Approved Articles</h1>
+  {% for a in articles %}
+    <article>
+      <h2>{{ a.title }}</h2>
+      <p><strong>Journalist:</strong> {{ a.journalist.username }}</p>
+      <p><strong>Publisher:</strong> {% if a.publisher %}{{ a.publisher.name }}{% else %}Independent{% endif %}</p>
+      <p>{{ a.content }}</p>
+      <hr>
+    </article>
+  {% empty %}
+    <p>No approved articles yet.</p>
+  {% endfor %}
+{% endblock %}

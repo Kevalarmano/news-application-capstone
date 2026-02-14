@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News App</title>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    {% if user.is_authenticated %}
+      <span>Logged in as {{ user.username }}</span>
+      <a href="/accounts/logout/">Logout</a>
+      {% if user.role == "EDITOR" %}
+        <a href="/editor/review/">Editor Review</a>
+      {% endif %}
+    {% else %}
+      <a href="/accounts/login/">Login</a>
+    {% endif %}
+  </nav>
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>

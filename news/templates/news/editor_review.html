@@ -1,0 +1,19 @@
+{% extends "news/base.html" %}
+{% block content %}
+  <h1>Editor Review (Unapproved)</h1>
+
+  {% for a in articles %}
+    <article>
+      <h2>{{ a.title }}</h2>
+      <p><strong>By:</strong> {{ a.journalist.username }}</p>
+      <p>{{ a.content }}</p>
+      <form method="post" action="/editor/approve/{{ a.id }}/">
+        {% csrf_token %}
+        <button type="submit">Approve</button>
+      </form>
+      <hr>
+    </article>
+  {% empty %}
+    <p>No pending articles.</p>
+  {% endfor %}
+{% endblock %}
